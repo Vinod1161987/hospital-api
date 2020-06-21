@@ -4,4 +4,4 @@ function addheaders(req, res, next) {
     next();
   }
 
-  module.exports =addheaders;
+module.exports =addheaders;
