@@ -7,7 +7,9 @@ router.post('/authenticate', authenticate);
 module.exports = router;
 
 async function authenticate(req, res, next) {
-    userService.authenticateJWT(req.body)
+    const username=req.headers['userId'];
+    const password=req.headers['userPassword'];
+    userService.authenticateJWT({username,password})
         .then(user => res.json(user))
         .catch(next);
 }

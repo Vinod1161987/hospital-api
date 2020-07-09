@@ -1,11 +1,12 @@
-function getresponse(status,data)
+function getresponse(code,message,data,paging)
 {
     return response =   { 
-        metadata:{ 
-          status:status,
-          guid: 'asdasdasd'
+        data:data,
+        status:{
+          code: code,
+          message:message
         },
-        data:{data}
+        paging:paging
       }
 }
 

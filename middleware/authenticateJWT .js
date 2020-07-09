@@ -2,12 +2,14 @@ module.exports = authenticateJWT;
 
 function authenticateJWT (req, res, next) {
 
+    console.log(req.url);
     if(req.url =='/users/authenticate')
     {
         console.log('next');
         next();
     }
     else{
+       
     const authHeader = req.headers.authorization;
     console.log(authHeader);
     if (authHeader) {
