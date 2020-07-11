@@ -9,7 +9,6 @@ async function authenticateJWT({ username, password }) {
   // Filter user from the users array by username and password
 
   const userList = await users.getUsersAsync();
-  console.log(username);
   const user = userList.find(usr => { return usr.Name.toString() === username.toString() && usr.Password.toString() === password.toString() });
   if (user) {
     // Generate an access token

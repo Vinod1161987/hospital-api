@@ -3,8 +3,6 @@ const userService = require('../services/user.service');
 class UserController {
     constructor() { }
     async authenticate(req, res, next) {
-        console.log("UserController - Authenticate called...")
-        console.log(req.headers);
         const username=req.headers['userid'];
         const password=req.headers['userpassword'];
         if (!username || !password) {
@@ -19,9 +17,6 @@ class UserController {
 
 
     async registration(req, res, next) {
-        console.log("UserController - registration called...")
-        console.log(req.headers);
-        console.log(req.body);
         return res.status(200).end()
     }
 }
