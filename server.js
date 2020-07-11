@@ -1,17 +1,20 @@
 
+var unless = require('express-unless');
 const express = require('express');
-
-
+const user = require('./routes/user')
 const bodyParser = require('body-parser');
-const errorHandler = require('./_helper/error-handler');
-const addheaders = require('./middleware/headers');
-const authenticateJWT  = require('./middleware/authenticateJWT ');
+let errorHandler = require('./_helper/error-handler');
+let addheaders = require('./middleware/headers');
+let authenticateJWT = require('./middleware/authenticateJWT');
 
 const app = express();
 
 app.use(bodyParser.json());
+app.get('/favicon.ico', (req, res) => res.status(204));
 app.use(addheaders);
-app.use(authenticateJWT);
+app.use('/user', user);
+authenticateJWT.unless = unless;
+app.use(authenticateJWT.unless({path: ['/user/authenticate']}));
 
 // const awaitHandlerFactory = (middleware) => {
 //     return async (req, res, next) => {
@@ -20,15 +23,8 @@ app.use(authenticateJWT);
 //         .catch(next);
 //     }
 //   }
-
-app.use('/users', require('./controllers/users.controller'));
-
-
-
-
-app.get('/',(req,res)=>
-{
-
+app.get('/', (req, res) => {
+    console.log('default method called..');
 });
 
 app.use(errorHandler);
