@@ -10,6 +10,7 @@ async function authenticateJWT ({ username, password }) {
     // Filter user from the users array by username and password
     
     const usersobj = await users.getusersAsync();
+    console.log("username");
     console.log(username);
     const user = usersobj.find(u => { return u.Name.toString() === username.toString() && u.Password.toString() === password.toString() });
     if (user) {

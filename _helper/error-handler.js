@@ -2,7 +2,7 @@ module.exports = errorHandler;
 
 const response =require('./response');
 function errorHandler(err, req, res, next) {
-
+    debugger;
     console.log('errorHandler');
     console.log(err);
     if (typeof (err) === 'string') {
