@@ -16,5 +16,13 @@ class UserController {
             .then(user => res.json(user))
             .catch(next);// Errors will be passed to Express.
     }
+
+
+    async registration(req, res, next) {
+        console.log("UserController - registration called...")
+        console.log(req.headers);
+        console.log(req.body);
+        return res.status(200).end()
+    }
 }
 module.exports = UserController;

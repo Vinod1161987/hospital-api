@@ -16,12 +16,12 @@ async function authenticateJWT({ username, password }) {
     const accessToken = jwt.sign(
       { username: user.Name, role: user.role },
       config.secret,
-      { expiresIn: '2h' }
+      { expiresIn: `${config.tokenExpirePeriodInHour}h` }
     );
     return response.getresponse(200, 'OK', {
       tokenType: "Bearer",
       accessToken: accessToken,
-      expiredIn: '2h'
+      expiredIn:  config.tokenExpirePeriodInHour*60*60
     });
   } else {
     throw 'Username or password incorrect';

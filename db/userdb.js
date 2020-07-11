@@ -4,7 +4,7 @@ const db= require('./connectiondb');
 firebase.initializeApp(db.config);
 
 
-async function getusersAsync()
+async function getUsersAsync()
 { 
   console.log("1");
   var res = [];
@@ -22,4 +22,4 @@ async function getusersAsync()
     return res;         
 }
 
-module.exports= {getusersAsync};
+module.exports= {getUsersAsync};

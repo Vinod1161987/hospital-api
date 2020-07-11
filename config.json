@@ -1,4 +1,5 @@
 
 {
-    "secret":"youraccesstokensecret"
+    "secret":"youraccesstokensecret",
+    "tokenExpirePeriodInHour":1
 }

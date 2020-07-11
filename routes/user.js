@@ -11,11 +11,16 @@ router.post("/authenticate", async (req, res, next) => {
    await userController.authenticate(req, res, next);
     //next();
 })
-router.get("/user/authorize", (req, res, next) => {   
+router.get("/authorize", (req, res, next) => {   
     console.log("authorize-Post") ;
     userController.authenticate (req, res, next);
     next();
 })
 
+router.post("/registration", (req, res, next) => {   
+    console.log("Registration-Post") ;
+    userController.registration (req, res, next);
+    // next();
+})
 
 module.exports = router;
