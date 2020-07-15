@@ -20,13 +20,26 @@ async function authenticateJWT({ username, password }) {
     return response.getresponse(200, 'OK', {
       tokenType: "Bearer",
       accessToken: accessToken,
-      expiredIn:  config.tokenExpirePeriodInHour*60*60
+      expiredIn: config.tokenExpirePeriodInHour * 60 * 60
     });
   } else {
     throw 'Username or password incorrect';
   }
 };
 
+
+async function registration(user) {
+  const message = await users.registerUsersAsync(user);
+  if (message === '200') {
+    return response.getresponse(200, 'OK', {
+      message: "user created sucessfully"
+    });
+  } else {
+    throw '"Something went wrong';
+  }
+}
+
 module.exports = {
-  authenticateJWT
+  authenticateJWT,
+  registration
 };

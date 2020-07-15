@@ -15,14 +15,6 @@ app.use(addheaders);
 app.use('/user', user);
 authenticateJWT.unless = unless;
 app.use(authenticateJWT.unless({path: ['/user/authenticate']}));
-
-// const awaitHandlerFactory = (middleware) => {
-//     return async (req, res, next) => {
-//         // await middleware(req, res, next)
-//         middleware(req, res, next)
-//         .catch(next);
-//     }
-//   }
 app.get('/', (req, res) => {
     console.log('default method called..');
 });
