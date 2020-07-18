@@ -14,12 +14,5 @@ class UserController {
             .then(user => res.json(user))
             .catch(next);// Errors will be passed to Express.
     }
-
-
-    async registration(req, res, next) {
-        await userService.registration(req.body)
-            .then(response => res.json(response))
-            .catch(next);
-    }
 }
 module.exports = UserController;

@@ -1,7 +1,6 @@
 
 const jwt = require('jsonwebtoken');
 const users = require('../../API/db/userdb');
-const config = require('../config.json');
 
 function authenticateJWT (req, res,next) {
     

@@ -13,8 +13,4 @@ router.get("/authorize", (req, res, next) => {
     userController.authenticate (req, res, next);
 })
 
-router.post("/registration", (req, res, next) => {   
-    userController.registration (req, res, next);
-})
-
 module.exports = router;
