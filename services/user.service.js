@@ -13,7 +13,7 @@ async function authenticateJWT({ username, password }) {
     // Generate an access token
     const accessToken = jwt.sign(
       { username: user.Name, role: user.role },
-      config.secret,
+      global.gConfig.secret,
       { expiresIn: `${global.gConfig.tokenExpirePeriodInHour}h` }
     );
     return response.getresponse(200, 'OK', {

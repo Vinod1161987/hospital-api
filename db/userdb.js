@@ -1,7 +1,11 @@
 var firebase = require('firebase');
 const db = require('./connectiondb');
 
-firebase.initializeApp(db.config);
+// firebase.initializeApp(db.config);
+
+if (!firebase.apps.length) {
+  firebase.initializeApp(db.config);
+}
 
 
 async function getUsersAsync() {
@@ -16,22 +20,7 @@ async function getUsersAsync() {
   return res;
 }
 
-async function registerUsersAsync(user) {
-  var status = '';
-  var userReference = firebase.database().ref("/Patient/");
-  await userReference.push(user, (err) => {
-    if (err) {
-      status = "300";
-    }
-    else {
-      status = "200";
-    }
-  }
-  );
-  return status;
-}
 
 module.exports = {
-  getUsersAsync,
-  registerUsersAsync
+  getUsersAsync
 };
