@@ -7,15 +7,10 @@ router.get("/", (req, res, next) => {
     next();
 })
 router.post("/authenticate", async (req, res, next) => {   
-    console.log("authenticate-Post") ;
    await userController.authenticate(req, res, next);
-    //next();
 })
-router.get("/user/authorize", (req, res, next) => {   
-    console.log("authorize-Post") ;
+router.get("/authorize", (req, res, next) => {   
     userController.authenticate (req, res, next);
-    next();
 })
-
 
 module.exports = router;

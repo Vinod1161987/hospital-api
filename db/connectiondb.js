@@ -8,4 +8,4 @@ var config = {
     appId: "1:513418301166:web:74ea13d02b540f9d86adff",
     measurementId: "G-GG50Z53GYD"
 };
-module.exports= {config};
+module.exports = { config };

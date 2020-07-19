@@ -1,20 +1,28 @@
-const jwt = require('jsonwebtoken');
-
 module.exports = authenticateJWT;
 
-function authenticateJWT(req, res, next) {
+function authenticateJWT (req, res, next) {
+
+    if(req.url =='/users/authenticate')
+    {
+        console.log('next');
+        next();
+    }
+    else{
     const authHeader = req.headers.authorization;
+    console.log(authHeader);
     if (authHeader) {
         const token = authHeader.split(' ')[1];
-        if (token == null) return res.sendStatus(401) // if there isn't any token
-        jwt.verify(token, config.secret, (err, user) => {
+
+        jwt.verify(token, accessTokenSecret, (err, user) => {
             if (err) {
                 return res.sendStatus(403);
             }
+
             req.user = user;
             next();
         });
     } else {
-        return res.sendStatus(400);
+        throw 'UnauthorizedError';
     }
+}
 };

@@ -1,25 +1,26 @@
 var firebase = require('firebase');
-const db= require('./connectiondb');
+const db = require('./connectiondb');
 
-firebase.initializeApp(db.config);
+// firebase.initializeApp(db.config);
 
-
-async function getusersAsync()
-{ 
-  console.log("1");
-  var res = [];
-  var userReference = firebase.database().ref("/User/");
-  console.log("2");
-    var snapshot =  await userReference.once('value'); 
-    console.log("3");
-    if(snapshot.exists()) {
-      console.log("4");
-        snapshot.forEach(function(childSnapshot) {  
-          res.push(childSnapshot.val())
-        });
-      }
-      console.log("5");
-    return res;         
+if (!firebase.apps.length) {
+  firebase.initializeApp(db.config);
 }
 
-module.exports= {getusersAsync};
+
+async function getUsersAsync() {
+  var res = [];
+  var userReference = firebase.database().ref("/User/");
+  var snapshot = await userReference.once('value');
+  if (snapshot.exists()) {
+    snapshot.forEach(function (childSnapshot) {
+      res.push(childSnapshot.val())
+    });
+  }
+  return res;
+}
+
+
+module.exports = {
+  getUsersAsync
+};
