@@ -1,4 +1,5 @@
 var firebase = require('firebase');
+var patient =require('./../models/patient');
 const db = require('./connectiondb');
 
 // firebase.initializeApp(db.config);
@@ -29,10 +30,19 @@ async function getPatientListAsync() {
   var snapshot = await patientReference.once('value');
   if (snapshot.exists()) {
     snapshot.forEach(function (childSnapshot) {
-      res.push(childSnapshot.val())
+      var p = new patient();
+      p.SetId(childSnapshot.key);
+      p.Setage(childSnapshot.val().address);
+      p.Setage(childSnapshot.val().age);
+      p.SetfirstName(childSnapshot.val().firstName);
+      p.SetemergencyContactNo(childSnapshot.val().emergencyContactNo);
+      p.Setgender(childSnapshot.val().gender);
+      p.SetlastName(childSnapshot.val().lastName);
+      p.SetmiddleName(childSnapshot.val().middleName);
+      p.SetmobileNo(childSnapshot.val().mobileNo);
+      res.push(p)
     });
   }
-  console.log(res);
   return res;
 }
 
